@@ -3,22 +3,321 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Donation</title>
+
+  <title>Support the Project</title>
+  <meta
+    name="description"
+    content="Dukung project ini melalui QRIS. Setiap dukungan sangat berarti."
+  >
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --background: #111315;
+      --surface: #191c1f;
+      --surface-soft: #202428;
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #f2f3f3;
+      --text-soft: #aeb3b6;
+      --text-muted: #777d81;
+      --accent: #d9dde0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(255, 255, 255, 0.055),
+          transparent 38%
+        ),
+        var(--background);
+      color: var(--text);
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+      justify-content: center;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 720px;
+      padding: 72px 24px 48px;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 38px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow::before,
+    .eyebrow::after {
+      content: "";
+      width: 18px;
+      height: 1px;
+      background: var(--border);
+    }
+
+    h1 {
+      font-size: clamp(32px, 7vw, 48px);
+      line-height: 1.08;
+      font-weight: 650;
+      letter-spacing: -0.035em;
+      margin-bottom: 16px;
+    }
+
+    .intro {
+      max-width: 520px;
+      margin: 0 auto;
+      color: var(--text-soft);
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    .card {
+      position: relative;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.035),
+          rgba(255, 255, 255, 0.012)
+        ),
+        var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow:
+        0 24px 70px rgba(0, 0, 0, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.025);
+    }
+
+    .card-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 7px;
+    }
+
+    .card-description {
+      color: var(--text-muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .qris-wrapper {
+      display: flex;
+      justify-content: center;
+      padding: 6px 0 10px;
+    }
+
+    .qris-frame {
+      width: min(100%, 390px);
+      aspect-ratio: 1;
+      background: #fff;
+      border-radius: 18px;
+      padding: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.28);
+    }
+
+    .qris-frame img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .instruction {
+      text-align: center;
+      margin-top: 22px;
+      color: var(--text-soft);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 30px 0;
+    }
+
+    .note {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 15px 16px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .note-icon {
+      flex: 0 0 auto;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--surface-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 13px;
+    }
+
+    .note-text {
+      color: var(--text-muted);
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+    .thanks {
+      text-align: center;
+      margin-top: 38px;
+    }
+
+    .thanks-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .thanks-text {
+      color: var(--text-muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 42px;
+      color: var(--text-muted);
+      font-size: 11px;
+      letter-spacing: 0.02em;
+    }
+
+    @media (max-width: 520px) {
+      .page {
+        padding: 48px 16px 32px;
+      }
+
+      .hero {
+        margin-bottom: 28px;
+      }
+
+      .card {
+        padding: 20px;
+        border-radius: 22px;
+      }
+
+      .qris-frame {
+        padding: 10px;
+        border-radius: 15px;
+      }
+    }
+  </style>
 </head>
+
 <body>
+  <main class="page">
 
-  <h1>Dukung Project Ini</h1>
+    <header class="hero">
+      <div class="eyebrow">Support the Project</div>
 
-  <p>
-    Jika project ini bermanfaat bagi kamu,
-    kamu dapat memberikan dukungan melalui QRIS.
-  </p>
+      <h1>Thank You for Your Support</h1>
 
-  <h2>Scan QRIS</h2>
+      <p class="intro">
+        Jika project ini bermanfaat bagi kamu, kamu dapat memberikan
+        dukungan melalui QRIS. Setiap dukungan, sekecil apa pun,
+        sangat berarti dan membantu project ini terus berkembang.
+      </p>
+    </header>
 
-  <img src="QrisExample.png" alt="QRIS Donation" width="300">
+    <section class="card">
 
-  <p>Terima kasih atas dukungan kamu ❤️</p>
+      <div class="card-header">
+        <h2 class="card-title">Donate via QRIS</h2>
 
+        <p class="card-description">
+          Scan QRIS di bawah menggunakan aplikasi pembayaran pilihanmu.
+        </p>
+      </div>
+
+      <div class="qris-wrapper">
+        <div class="qris-frame">
+          <img
+            src="QrisExample.png"
+            alt="QRIS untuk donasi"
+          >
+        </div>
+      </div>
+
+      <p class="instruction">
+        Buka aplikasi pembayaran kamu, pilih fitur scan QR,
+        lalu arahkan kamera ke QRIS di atas.
+      </p>
+
+      <div class="divider"></div>
+
+      <div class="note">
+        <div class="note-icon">✓</div>
+
+        <p class="note-text">
+          Tidak ada jumlah minimum untuk berdonasi.
+          Berikan sesuai keinginan dan kemampuan kamu.
+        </p>
+      </div>
+
+    </section>
+
+    <section class="thanks">
+      <h2 class="thanks-title">Every contribution matters.</h2>
+
+      <p class="thanks-text">
+        Terima kasih sudah mendukung dan menjadi bagian
+        dari perjalanan project ini.
+      </p>
+    </section>
+
+    <footer>
+      Made with appreciation · Thank you for your support.
+    </footer>
+
+  </main>
 </body>
 </html>
